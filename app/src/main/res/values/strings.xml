@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Taller4-Jaime-Jaramillo</string>
+    <string name="add_new_product">Añadir un nuevo producto</string>
+    <string name="product_name">Nombre del producto</string>
+    <string name="quantity">Cantidad</string>
+    <string name="price">Precio</string>
+    <string name="add_product">Añadir Producto</string>
+</resources>
