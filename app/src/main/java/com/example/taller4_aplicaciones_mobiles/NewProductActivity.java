@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.taller4_aplicaciones_mobiles.db.DbHelper;
+import com.example.taller4_aplicaciones_mobiles.db.DbProducts;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class NewProductActivity extends AppCompatActivity {
@@ -66,8 +67,8 @@ public class NewProductActivity extends AppCompatActivity {
     }
 
     private void insertToDb() {
-        DbHelper dbHelper = new DbHelper(NewProductActivity.this);
-        dbHelper.addProduct(product_name, "", Integer.parseInt(product_quantity), Double.parseDouble(product_price));
+        DbProducts dbProducts = new DbProducts(this);
+        dbProducts.addProduct(product_name, "", Integer.parseInt(product_quantity), Double.parseDouble(product_price));
     }
 
     private void hideKeyboard() {
