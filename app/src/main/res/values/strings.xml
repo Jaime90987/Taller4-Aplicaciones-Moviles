@@ -5,4 +5,12 @@
     <string name="quantity">Cantidad</string>
     <string name="price">Precio</string>
     <string name="add_product">Añadir Producto</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="delete_message">¿Desea eliminar el producto?</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete_all_products">Borrar todos los productos</string>
+    <string name="no_products_yet">Aún no hay productos</string>
+    <string name="save_changes">Guardar cambios</string>
+    <string name="edit_product">Editar producto</string>
 </resources>

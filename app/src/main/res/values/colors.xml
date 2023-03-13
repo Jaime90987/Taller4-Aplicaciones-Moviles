@@ -14,7 +14,12 @@
     <color name="LightBlue">#C0EEF2</color>
     <color name="SoftBlue">#E9F8F9</color>
 
-    <color name="Grey">#ECEFF1</color>
+    <color name="SoftWhite">#ECEFF1</color>
     <color name="Red">#B71C1C</color>
+
+    <color name="grey">#242B2E</color>
+    <color name="LightGrey">#505859</color>
+    <color name="Softgrey">#7A8283</color>
+    <color name="DarkGrey">#242424</color>
 
 </resources>

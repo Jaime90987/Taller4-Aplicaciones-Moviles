@@ -14,10 +14,19 @@
         android:theme="@style/Theme.Taller4aplicacionesmobiles"
         tools:targetApi="31">
         <activity
-            android:name=".NewProductActivity"
-            android:label="Añadir Producto"
+            android:name=".SeeProductActivity"
+            android:label="Producto"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".EditProductActivity"
+            android:exported="false"
+            android:label="Editar Producto"/>
+        <activity
+            android:name=".NewProductActivity"
+            android:exported="false"
+            android:label="Añadir Producto"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

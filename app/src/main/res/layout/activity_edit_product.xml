@@ -11,10 +11,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".NewProductActivity">
+        tools:context=".EditProductActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_ImgProduct"
+            android:id="@+id/iv_ImgProductE"
             android:layout_width="220dp"
             android:layout_height="220dp"
             android:layout_marginTop="36dp"
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_ProductName"
+            android:id="@+id/ti_ProductNameE"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             app:helperTextTextColor="@color/Red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_ImgProduct">
+            app:layout_constraintTop_toBottomOf="@+id/iv_ImgProductE">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_ProductQuantity"
+            android:id="@+id/ti_ProductQuantityE"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             app:helperTextTextColor="@color/Red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_ProductName">
+            app:layout_constraintTop_toBottomOf="@+id/ti_ProductNameE">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_ProductPrice"
+            android:id="@+id/ti_ProductPriceE"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
             app:helperTextTextColor="@color/Red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_ProductQuantity">
+            app:layout_constraintTop_toBottomOf="@+id/ti_ProductQuantityE">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -121,7 +121,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btn_addProduct"
+            android:id="@+id/btn_saveChanges"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
@@ -133,7 +133,7 @@
             android:paddingTop="15dp"
             android:paddingRight="25dp"
             android:paddingBottom="15dp"
-            android:text="@string/add_product"
+            android:text="@string/save_changes"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17sp"
@@ -141,7 +141,7 @@
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_ProductPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/ti_ProductPriceE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

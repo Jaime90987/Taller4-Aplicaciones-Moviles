@@ -1,5 +1,8 @@
 package com.example.taller4_aplicaciones_mobiles;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,37 +10,38 @@ import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-
+import com.example.taller4_aplicaciones_mobiles.Entities.Product;
 import com.example.taller4_aplicaciones_mobiles.db.DbProducts;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class NewProductActivity extends AppCompatActivity {
+public class EditProductActivity extends AppCompatActivity {
 
     AppCompatImageView imgProduct;
     TextInputLayout ti_name, ti_quantity, ti_price;
-    Button btn_addProduct;
+    Button btn_saveChanges;
     String product_name, product_quantity, product_price;
+    Product product;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_product);
+        setContentView(R.layout.activity_edit_product);
         initComponents();
         initListeners();
+        getProductInfo();
     }
 
     private void initComponents() {
-        imgProduct = findViewById(R.id.iv_ImgProduct);
-        ti_name = findViewById(R.id.ti_ProductName);
-        ti_quantity = findViewById(R.id.ti_ProductQuantity);
-        ti_price = findViewById(R.id.ti_ProductPrice);
-        btn_addProduct = findViewById(R.id.btn_addProduct);
+        imgProduct = findViewById(R.id.iv_ImgProductE);
+        ti_name = findViewById(R.id.ti_ProductNameE);
+        ti_quantity = findViewById(R.id.ti_ProductQuantityE);
+        ti_price = findViewById(R.id.ti_ProductPriceE);
+        btn_saveChanges = findViewById(R.id.btn_saveChanges);
     }
 
     private void initListeners() {
-        btn_addProduct.setOnClickListener(view -> validateInputs());
+        btn_saveChanges.setOnClickListener(view -> validateInputs());
     }
 
     private void validateInputs() {
@@ -68,14 +72,34 @@ public class NewProductActivity extends AppCompatActivity {
         }
     }
 
+    private void getProductInfo() {
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("ID")) {
+            id = (int) intent.getIntExtra("ID", 1);
+            showProduct();
+        } else {
+            alert();
+        }
+    }
+
+    private void showProduct() {
+        DbProducts dbProducts = new DbProducts(this);
+        product = dbProducts.showProduct(id);
+
+        ti_name.getEditText().setText(product.getName());
+        ti_quantity.getEditText().setText(String.valueOf(product.getQuantity()));
+        ti_price.getEditText().setText(String.valueOf(product.getPrice()));
+    }
+
     private void insertToDb() {
         DbProducts dbProducts = new DbProducts(this);
-        dbProducts.addProduct(product_name, "", Integer.parseInt(product_quantity), Double.parseDouble(product_price));
+        dbProducts.updateProduct(id, product_name, "", Integer.parseInt(product_quantity), Double.parseDouble(product_price));
     }
 
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(btn_addProduct.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(btn_saveChanges.getWindowToken(), 0);
     }
 
     private void clearAllInputs() {
@@ -86,7 +110,7 @@ public class NewProductActivity extends AppCompatActivity {
 
     private void alert() {
         new AlertDialog.Builder(this)
-                .setMessage("Producto ingresado correctamente")
+                .setMessage("Producto actualiazdo correctamente")
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
                     startActivity(new Intent(this, MainActivity.class));
                     finishAffinity();
@@ -94,5 +118,4 @@ public class NewProductActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
 }
