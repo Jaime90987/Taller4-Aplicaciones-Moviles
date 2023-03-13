@@ -24,11 +24,12 @@ public class DbProducts extends DbHelper {
         this.context = context;
     }
 
-    public void addProduct(String name, String imagePath, int quantity, double price) {
+    public void addProduct(String name, String imagePath, String description, int quantity, double price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_IMG, imagePath);
+        values.put(COLUMN_DESC, description);
         values.put(COLUMN_QUANTITY, quantity);
         values.put(COLUMN_PRICE, price);
 
@@ -58,8 +59,9 @@ public class DbProducts extends DbHelper {
                 product.setId(cursorProducts.getInt(0));
                 product.setName(cursorProducts.getString(1));
                 product.setImage(cursorProducts.getString(2));
-                product.setQuantity(cursorProducts.getInt(3));
-                product.setPrice(cursorProducts.getDouble(4));
+                product.setDescription(cursorProducts.getString(3));
+                product.setQuantity(cursorProducts.getInt(4));
+                product.setPrice(cursorProducts.getDouble(5));
 
                 listProducts.add(product);
             } while (cursorProducts.moveToNext());
@@ -84,8 +86,9 @@ public class DbProducts extends DbHelper {
             product.setId(cursorProducts.getInt(0));
             product.setName(cursorProducts.getString(1));
             product.setImage(cursorProducts.getString(2));
-            product.setQuantity(cursorProducts.getInt(3));
-            product.setPrice(cursorProducts.getDouble(4));
+            product.setDescription(cursorProducts.getString(3));
+            product.setQuantity(cursorProducts.getInt(4));
+            product.setPrice(cursorProducts.getDouble(5));
         }
 
         cursorProducts.close();
@@ -93,11 +96,12 @@ public class DbProducts extends DbHelper {
         return product;
     }
 
-    public void updateProduct(int id, String name, String imagePath, int quantity, double price) {
+    public void updateProduct(int id, String name, String imagePath, String description, int quantity, double price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_IMG, imagePath);
+        values.put(COLUMN_DESC, description);
         values.put(COLUMN_QUANTITY, quantity);
         values.put(COLUMN_PRICE, price);
 

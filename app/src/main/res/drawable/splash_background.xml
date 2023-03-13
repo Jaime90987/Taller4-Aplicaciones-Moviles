@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+
+    <item android:drawable="@color/SoftWhite" />
+
+    <item
+        android:bottom="280dp"
+        android:left="80dp"
+        android:right="80dp"
+        android:top="280dp">
+
+        <bitmap android:src="@drawable/ic_icon" />
+    </item>
+
+</layer-list>

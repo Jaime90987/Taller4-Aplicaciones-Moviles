@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taller4_aplicaciones_mobiles.EditProductActivity;
@@ -19,15 +20,19 @@ import com.example.taller4_aplicaciones_mobiles.R;
 import com.example.taller4_aplicaciones_mobiles.SeeProductActivity;
 import com.example.taller4_aplicaciones_mobiles.db.DbProducts;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
 
     ArrayList<Product> listProducts;
+    Context context;
+
     private BottomSheetDialog bottomSheetDialog, bottomSheetDialogDelete;
 
-    public ProductsAdapter(ArrayList<Product> listProducts) {
+    public ProductsAdapter(Context context, ArrayList<Product> listProducts) {
+        this.context = context;
         this.listProducts = listProducts;
     }
 
@@ -40,12 +45,21 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         return new ProductViewHolder(view);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.tv_ProductnName.setText(listProducts.get(position).getName());
-        holder.tv_ProductImg.setText(listProducts.get(position).getImage());
-        holder.tv_ProductnQuantity.setText(String.format("En Stock: " + listProducts.get(position).getQuantity()));
         holder.tv_ProductPrice.setText(String.format("$" + listProducts.get(position).getPrice()));
+
+        if (listProducts.get(position).getQuantity() > 0)
+            holder.tv_ProductnQuantity.setText(String.format(context.getResources().getString(R.string.in_stock2)));
+        else
+            holder.tv_ProductnQuantity.setText(context.getResources().getString(R.string.out_stock));
+
+        if (listProducts.get(position).getImage() != null)
+            Picasso.get().load(listProducts.get(position).getImage()).into(holder.tv_ProductImg);
+        else
+            holder.tv_ProductImg.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_no_image, context.getTheme()));
     }
 
     @Override
@@ -53,22 +67,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         return listProducts.size();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void updateProducts(ArrayList<Product> products) {
-        listProducts = products;
-        notifyDataSetChanged();
-    }
-
-
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_ProductnName, tv_ProductImg, tv_ProductnQuantity, tv_ProductPrice;
+        TextView tv_ProductnName, tv_ProductnQuantity, tv_ProductPrice;
+        AppCompatImageView tv_ProductImg;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_ProductnName = itemView.findViewById(R.id.tv_ProductnName);
-            tv_ProductImg = itemView.findViewById(R.id.tv_ProductImg);
+            tv_ProductImg = itemView.findViewById(R.id.iv_ProductImg);
             tv_ProductnQuantity = itemView.findViewById(R.id.tv_ProductnQuantity);
             tv_ProductPrice = itemView.findViewById(R.id.tv_ProductPrice);
 
@@ -104,6 +112,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                         bottomSheetDialogDelete.dismiss();
                         DbProducts dbProducts = new DbProducts(bottomSheetDialog.getContext());
                         dbProducts.deleteProduct(listProducts.get(getAdapterPosition()).getId());
+                        context.startActivity(new Intent(context, MainActivity.class));
+                        ((Activity) context).finishAffinity();
                     });
                 });
 

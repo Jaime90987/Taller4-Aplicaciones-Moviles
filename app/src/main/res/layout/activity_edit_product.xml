@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +18,7 @@
             android:layout_height="220dp"
             android:layout_marginTop="36dp"
             android:layout_marginBottom="36dp"
-            android:src="@drawable/ic_image"
+            android:src="@drawable/ic_search_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,14 +56,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_ProductQuantityE"
+            android:id="@+id/ti_ProductDescriptionE"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="36dp"
-            android:hint="@string/quantity"
+            android:hint="@string/description"
+            android:lines="5"
+            android:maxLines="8"
+            android:minLines="5"
             app:boxBackgroundColor="@color/SoftWhite"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -85,6 +87,42 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxLines="8"
+                android:minLines="5" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_ProductQuantityE"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="36dp"
+            android:hint="@string/quantity"
+            app:boxBackgroundColor="@color/SoftWhite"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxStrokeColor="@color/RoyaltBlue"
+            app:boxStrokeErrorColor="@color/Red"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:errorEnabled="true"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/Red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ti_ProductDescriptionE">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +132,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="36dp"
             android:hint="@string/price"
             app:boxBackgroundColor="@color/SoftWhite"
@@ -125,7 +163,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="36dp"
             android:layout_marginBottom="20dp"
             android:gravity="center"
@@ -142,6 +180,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ti_ProductPriceE" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_saveChanges" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

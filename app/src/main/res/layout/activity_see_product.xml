@@ -1,48 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SeeProductActivity">
+    android:fillViewport="true"
+    android:nestedScrollingEnabled="true">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        tools:src="@drawable/ic_image" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
-        android:maxLines="2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="Nombre del producto" />
+        android:orientation="vertical"
+        tools:context=".SeeProductActivity">
 
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:textSize="20sp"
-        tools:text="Cantidad del producto" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            tools:src="@drawable/ic_no_image" />
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/RoyaltBlue"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        tools:text="$189.00" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:maxLines="2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Nombre del producto" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/RoyaltBlue"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="$189.00" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            tools:text="Descripción del producto" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            tools:text="Cantidad del producto" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
+    </LinearLayout>
+</ScrollView>

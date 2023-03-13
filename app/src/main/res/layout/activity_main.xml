@@ -10,6 +10,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:background="@color/SoftWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +22,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="200dp"
         android:alpha="0.3"
-        android:src="@drawable/ic_noproducts"
+        android:src="@drawable/ic_no_products"
         android:tint="@color/RoyaltBlue"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +44,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_noProduct" />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/RoyaltBlue"
         android:clickable="true"
         android:contentDescription="@string/add_product"

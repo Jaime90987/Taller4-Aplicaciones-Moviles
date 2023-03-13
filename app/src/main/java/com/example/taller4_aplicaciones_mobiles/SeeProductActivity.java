@@ -1,5 +1,6 @@
 package com.example.taller4_aplicaciones_mobiles;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +14,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.taller4_aplicaciones_mobiles.Entities.Product;
 import com.example.taller4_aplicaciones_mobiles.db.DbProducts;
+import com.squareup.picasso.Picasso;
 
 public class SeeProductActivity extends AppCompatActivity {
 
-    TextView name, quantity, price;
+    TextView name, description, quantity, price;
     AppCompatImageView image;
     Product product;
     DbProducts dbProducts;
@@ -32,6 +34,7 @@ public class SeeProductActivity extends AppCompatActivity {
 
     private void initComponents() {
         name = findViewById(R.id.name);
+        description = findViewById(R.id.description);
         quantity = findViewById(R.id.quantity);
         price = findViewById(R.id.price);
         image = findViewById(R.id.image);
@@ -48,18 +51,29 @@ public class SeeProductActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void showProduct() {
         DbProducts dbProducts = new DbProducts(this);
         product = dbProducts.showProduct(id);
-
         name.setText(product.getName());
-        quantity.setText(String.valueOf(product.getQuantity()));
-        price.setText(String.valueOf(product.getPrice()));
+        description.setText(product.getDescription());
+
+        if (product.getQuantity() > 0)
+            quantity.setText(String.format(getResources().getString(R.string.in_stock) + " " + product.getQuantity()));
+        else
+            quantity.setText(getResources().getString(R.string.out_stock));
+
+        price.setText(String.format("$" + product.getPrice()));
+
+        if (product.getImage() != null) {
+            Picasso.get().load(product.getImage()).into(image);
+        } else
+            image.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_image, getTheme()));
     }
 
     private void alert() {
         new AlertDialog.Builder(this)
-                .setMessage("Error al mostrar la información del Producto")
+                .setMessage(getResources().getString(R.string.error_displaying_product_information))
                 .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> finish()).show();
     }
 
@@ -84,15 +98,15 @@ public class SeeProductActivity extends AppCompatActivity {
 
     public void confirmDialog() {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
-        builder.setTitle("Eliminar producto");
-        builder.setMessage("¿Esta seguro de querer eliminar este producto?");
-        builder.setPositiveButton("Si, eliminar", (dialogInterface, i) -> {
+        builder.setTitle(getResources().getString(R.string.delete_product));
+        builder.setMessage(getResources().getString(R.string.are_you_sure_you_want_to_remove_this_product));
+        builder.setPositiveButton(getResources().getString(R.string.yes_delete), (dialogInterface, i) -> {
             dbProducts = new DbProducts(this);
             dbProducts.deleteProduct(id);
             startActivity(new Intent(this, MainActivity.class));
             finishAffinity();
         });
-        builder.setNegativeButton("No, cancelar", (dialogInterface, i) -> {
+        builder.setNegativeButton(getResources().getString(R.string.no_cancel), (dialogInterface, i) -> {
         });
         builder.create().show();
     }

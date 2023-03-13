@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
 
             listProduct = dbProducts.showAllProducts();
-            adapter = new ProductsAdapter(listProduct);
+            adapter = new ProductsAdapter(MainActivity.this, listProduct);
             recyclerView.setAdapter(adapter);
         }
     }
@@ -84,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Eliminar productos");
-        builder.setMessage("¿Esta seguro de querer eliminar todos los productos?");
-        builder.setPositiveButton("Si, eliminar todos", (dialogInterface, i) -> {
+        builder.setTitle(getResources().getString(R.string.delete_product));
+        builder.setMessage(getResources().getString(R.string.are_you_sure_you_want_to_remove_all_products));
+        builder.setPositiveButton(getResources().getString(R.string.yes_delete_all), (dialogInterface, i) -> {
             dbProducts.deleteAllProducts();
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
-        builder.setNegativeButton("No, cancelar", (dialogInterface, i) -> {
+        builder.setNegativeButton(getResources().getString(R.string.no_cancel), (dialogInterface, i) -> {
         });
         builder.create().show();
     }
